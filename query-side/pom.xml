@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>br.holandajunior</groupId>
-    <artifactId>workaday</artifactId>
+    <artifactId>workaday-query-side</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <parent>
@@ -15,6 +15,23 @@
     </parent>
 
     <dependencies>
+
+        <!-- ***************** -->
+        <!-- External-->
+        <!-- ***************** -->
+
+        <!-- Event core -->
+
+        <dependency>
+            <groupId>br.holandajunior</groupId>
+            <artifactId>workaday-event-store</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
+        <!-- ***************** -->
+        <!-- External-->
+        <!-- ***************** -->
+
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -26,10 +43,26 @@
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
 
+        <!-- Persistence -->
+
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
         </dependency>
+
+        <!-- Message broker -->
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-activemq</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.activemq</groupId>
+            <artifactId>activemq-broker</artifactId>
+        </dependency>
+
+        <!-- Test -->
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
