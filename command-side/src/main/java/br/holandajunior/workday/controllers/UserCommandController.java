@@ -5,11 +5,9 @@ import br.holandajunior.workday.commands.CreateUser;
 import br.holandajunior.workday.models.User;
 import br.holandajunior.workday.repositories.IUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.jms.core.JmsTemplate;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -27,7 +25,8 @@ public class UserCommandController {
     @Autowired
     private JmsTemplate jmsTemplate;
 
-    @RequestMapping( value = "/save", method = RequestMethod.POST )
+    @RequestMapping(value = "/save", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.CREATED)
     public void save(@Valid @RequestBody CreateUser createUserCommand ) {
 
         // Persist new user
@@ -36,11 +35,11 @@ public class UserCommandController {
         user.setEmail( createUserCommand.getEmail() );
         user.setPassword( createUserCommand.getPassword() );
 
-        userRepository.save( user );
-
+        User newUser = userRepository.saveAndFlush( user );
 
         // Send event
-        UserCreated userCreated = new UserCreated( createUserCommand.getName(),
+        UserCreated userCreated = new UserCreated( newUser.getId(),
+                                                   createUserCommand.getName(),
                                                    createUserCommand.getEmail() );
 
         jmsTemplate.convertAndSend( UserCreated.DESTINATION, userCreated );
