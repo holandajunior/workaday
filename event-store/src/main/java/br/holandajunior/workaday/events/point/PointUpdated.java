@@ -5,27 +5,21 @@ import br.holandajunior.workaday.events.BaseEvent;
 import java.util.Date;
 
 /**
- * Created by holandajunior on 29/04/17.
+ * Created by holandajunior on 01/05/17.
  */
-public class PointCreated implements BaseEvent {
+public class PointUpdated implements BaseEvent {
 
-    public static final String DESTINATION = "event.pointCreated";
+    public static final String DESTINATION = "event.pointUpdated";
 
-    private long userId; // From relational database
     private long pointId; // From relational database
     private Date entry;
     private Date exit;
 
-    public PointCreated( long userId, long pointId, Date entry, Date exit ) {
+    public PointUpdated( long pointId, Date entry, Date exit ) {
 
-        this.userId = userId;
         this.pointId = pointId;
         this.entry = entry;
         this.exit = exit;
-    }
-
-    public long getUserId() {
-        return userId;
     }
 
     public long getPointId() {
