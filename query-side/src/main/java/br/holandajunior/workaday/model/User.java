@@ -1,26 +1,37 @@
 package br.holandajunior.workaday.model;
 
-import javax.persistence.*;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import java.util.List;
 
 /**
  * Created by holandajunior on 29/04/17.
  */
 
-@Entity
+@Document
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private String id;
 
+    private long userId;
     private String name;
     private String email;
 
-    @OneToMany
     private List<Point> points;
 
-    public long getId() {
+    public long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(long userId) {
+        this.userId = userId;
+    }
+
+    public String getId() {
         return id;
     }
 

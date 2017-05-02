@@ -1,27 +1,23 @@
 package br.holandajunior.workaday.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import java.util.Date;
 
 /**
  * Created by holandajunior on 29/04/17.
  */
 
-@Entity
 public class Point {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
-
+    private long pointId;
     private Date entry;
     private Date exit;
 
-    public long getId() {
-        return id;
+    public long getPointId() {
+        return pointId;
+    }
+
+    public void setPointId(long pointId) {
+        this.pointId = pointId;
     }
 
     public Date getEntry() {
@@ -47,12 +43,12 @@ public class Point {
 
         Point point = (Point) o;
 
-        return id == point.id;
+        return pointId == point.pointId;
 
     }
 
     @Override
     public int hashCode() {
-        return (int) (id ^ (id >>> 32));
+        return (int) (pointId ^ (pointId >>> 32));
     }
 }
