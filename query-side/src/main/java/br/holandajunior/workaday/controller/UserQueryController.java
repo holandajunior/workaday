@@ -26,7 +26,7 @@ public class UserQueryController {
 
     @RequestMapping("/{id}")
     public User findOne( @PathVariable("id") Long id ) {
-        return userRepo.findOne( id );
+        return userRepo.findByUserId( id );
     }
 
 }
