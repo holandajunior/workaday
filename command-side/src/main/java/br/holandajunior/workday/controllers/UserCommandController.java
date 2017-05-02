@@ -4,10 +4,13 @@ import br.holandajunior.workaday.events.user.UserCreated;
 import br.holandajunior.workday.commands.CreateUser;
 import br.holandajunior.workday.models.User;
 import br.holandajunior.workday.repositories.IUserRepository;
+import br.holandajunior.workday.services.api.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.request.async.DeferredResult;
 
 import javax.validation.Valid;
 
@@ -20,29 +23,24 @@ import javax.validation.Valid;
 public class UserCommandController {
 
     @Autowired
-    private IUserRepository userRepository;
-
-    @Autowired
-    private JmsTemplate jmsTemplate;
+    private IUserService userService;
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
-    @ResponseStatus(HttpStatus.CREATED)
-    public void save(@Valid @RequestBody CreateUser createUserCommand ) {
+    public DeferredResult< ResponseEntity<Void> > save(@Valid @RequestBody final CreateUser createUserCommand ) {
 
-        // Persist new user
-        User user = new User();
-        user.setName( createUserCommand.getName() );
-        user.setEmail( createUserCommand.getEmail() );
-        user.setPassword( createUserCommand.getPassword() );
+        final DeferredResult< ResponseEntity<Void> > result = new DeferredResult<ResponseEntity<Void>>();
 
-        User newUser = userRepository.saveAndFlush( user );
+        new Thread(new Runnable() {
 
-        // Send event
-        UserCreated userCreated = new UserCreated( newUser.getId(),
-                                                   createUserCommand.getName(),
-                                                   createUserCommand.getEmail() );
+            @Override
+            public void run() {
 
-        jmsTemplate.convertAndSend( UserCreated.DESTINATION, userCreated );
+                userService.save( createUserCommand );
+                result.setResult( new ResponseEntity<Void>( HttpStatus.CREATED ) );
+            }
+        }).start();
+
+        return result;
 
     }
 }

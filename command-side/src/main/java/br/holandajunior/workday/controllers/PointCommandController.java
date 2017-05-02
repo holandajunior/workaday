@@ -1,17 +1,13 @@
 package br.holandajunior.workday.controllers;
 
-import br.holandajunior.workaday.events.point.PointCreated;
-import br.holandajunior.workaday.events.point.PointUpdated;
 import br.holandajunior.workday.commands.CreatePoint;
 import br.holandajunior.workday.commands.UpdatePoint;
-import br.holandajunior.workday.models.Point;
-import br.holandajunior.workday.models.User;
-import br.holandajunior.workday.repositories.IPointRepository;
-import br.holandajunior.workday.repositories.IUserRepository;
+import br.holandajunior.workday.services.api.IPointService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.jms.core.JmsTemplate;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.request.async.DeferredResult;
 
 /**
  * Created by holandajunior on 30/04/17.
@@ -22,59 +18,46 @@ import org.springframework.web.bind.annotation.*;
 public class PointCommandController {
 
     @Autowired
-    private IUserRepository userRepository;
-    @Autowired
-    private IPointRepository pointRepository;
-
-    @Autowired
-    private JmsTemplate jmsTemplate;
+    private IPointService pointService;
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
-    @ResponseStatus(HttpStatus.CREATED)
-    public void save( @RequestBody CreatePoint createPointCommand ) {
+    public DeferredResult< ResponseEntity<Void> > save(@RequestBody final CreatePoint createPointCommand ) {
 
-        // Save point
-        Point point =  new Point();
-        point.setEntry( createPointCommand.getEntry() );
-        point.setExit( createPointCommand.getExit() );
+        final DeferredResult< ResponseEntity<Void> > result = new DeferredResult<ResponseEntity<Void>>();
 
-        Point newPoint = pointRepository.saveAndFlush( point );
+        new Thread( new Runnable() {
 
-        User user = userRepository.findOne( createPointCommand.getUserId() );
-        user.addPoint( newPoint );
+            @Override
+            public void run() {
 
-        userRepository.save( user );
+                pointService.save( createPointCommand );
+                result.setResult( new ResponseEntity<Void>( HttpStatus.CREATED ) );
+            }
 
-        // Send event
-        PointCreated pointCreated = new PointCreated( createPointCommand.getUserId(),
-                                                      newPoint.getId(),
-                                                      createPointCommand.getEntry(),
-                                                      createPointCommand.getExit() );
+        }).start();
 
-        jmsTemplate.convertAndSend( PointCreated.DESTINATION, pointCreated );
+        return result;
 
     }
 
     @RequestMapping(value = "/update/{id}", method = RequestMethod.PUT)
     @ResponseStatus(HttpStatus.OK)
-    public void update(  @PathVariable("id") long id, @RequestBody UpdatePoint updatePointCommand ) {
+    public DeferredResult< ResponseEntity<Void> > update(  @PathVariable("id") final long id, @RequestBody final UpdatePoint updatePointCommand ) {
 
-        // Update point
-        Point point = pointRepository.findOne( id );
+        final DeferredResult< ResponseEntity<Void> > result = new DeferredResult<ResponseEntity<Void>>();
 
-        point.setEntry( updatePointCommand.getEntry() );
-        point.setExit( updatePointCommand.getExit() );
+        new Thread( new Runnable() {
 
-        pointRepository.save( point );
+            @Override
+            public void run() {
 
-        // Send event
+                pointService.update( id, updatePointCommand );
+                result.setResult( new ResponseEntity<Void>( HttpStatus.OK ) );
 
-        PointUpdated pointUpdated = new PointUpdated( point.getId(),
-                                                      updatePointCommand.getEntry(),
-                                                      updatePointCommand.getExit());
+            }
+        }).start();
 
-        jmsTemplate.convertAndSend( PointUpdated.DESTINATION, pointUpdated );
-
+        return result;
     }
 
 
