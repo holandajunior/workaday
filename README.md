@@ -37,3 +37,15 @@ POST /points/save - add a new work hour. You must provide user id which it refer
 
 POST /points/update/{id} - update a work hour with new entry hour or exit hour according to its id.
 ```
+
+## To do
+
+#### Tests
+No kinds of test was created during this project yet. :( 
+
+#### To improve project documentation
+This project is simple. A basic MVC architecture was followed and its packages was created properly. Classes and variables names was defined according to its meaning, i hope :) . However, it must be itself well documented.
+
+### Frontend
+A frontend application to demonstrate using the API is in development.
+
