@@ -1,4 +1,4 @@
-package br.holandajunior.workday.commands;
+package br.holandajunior.workday.commands.api;
 
 import java.io.Serializable;
 

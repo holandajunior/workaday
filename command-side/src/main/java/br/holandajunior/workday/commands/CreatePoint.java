@@ -1,5 +1,7 @@
 package br.holandajunior.workday.commands;
 
+import br.holandajunior.workday.commands.api.ICommand;
+
 import java.util.Date;
 
 /**

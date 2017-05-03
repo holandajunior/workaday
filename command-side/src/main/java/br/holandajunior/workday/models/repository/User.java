@@ -1,4 +1,4 @@
-package br.holandajunior.workday.models;
+package br.holandajunior.workday.models.repository;
 
 import javax.persistence.*;
 import java.util.List;
@@ -15,7 +15,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    private String name;
+    private String username;
     private String email;
     private String password;
 
@@ -26,12 +26,12 @@ public class User {
         return id;
     }
 
-    public String getName() {
-        return name;
+    public String getUsername() {
+        return username;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getEmail() {
@@ -72,12 +72,12 @@ public class User {
 
         User user = (User) o;
 
-        return email != null ? email.equals(user.email) : user.email == null;
+        return username != null ? username.equals(user.username) : user.username == null;
 
     }
 
     @Override
     public int hashCode() {
-        return email != null ? email.hashCode() : 0;
+        return username != null ? username.hashCode() : 0;
     }
 }

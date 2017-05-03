@@ -1,4 +1,4 @@
-package br.holandajunior.workday.models;
+package br.holandajunior.workday.models.repository;
 
 import javax.persistence.*;
 import java.util.Date;
