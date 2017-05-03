@@ -1,6 +1,6 @@
 package br.holandajunior.workday.repositories;
 
-import br.holandajunior.workday.models.Point;
+import br.holandajunior.workday.models.repository.Point;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**

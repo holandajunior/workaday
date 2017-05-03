@@ -1,14 +1,10 @@
 package br.holandajunior.workday.controllers;
 
-import br.holandajunior.workaday.events.user.UserCreated;
 import br.holandajunior.workday.commands.CreateUser;
-import br.holandajunior.workday.models.User;
-import br.holandajunior.workday.repositories.IUserRepository;
 import br.holandajunior.workday.services.api.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.jms.core.JmsTemplate;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.async.DeferredResult;
 
