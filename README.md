@@ -2,7 +2,7 @@
 
 This project is just a simple work hours management RESTful system, providing an API that intends to demonstrate CQRS (Commande Query Responsibility Segregation) principles in practice.
 
-## Modules
+## Subprojects
 It follows CQRS principles, so this project is divided into two main projects: command-side and query-side.
 I decided to develop both modules as separated microservices to show the main goal: scalability.
 The event-store module is just to own common events sent between the others two modules to communicate specific messages. Further, event-sourcing pattern can be developed into this last module.
