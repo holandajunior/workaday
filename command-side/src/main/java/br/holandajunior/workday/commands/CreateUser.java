@@ -1,5 +1,7 @@
 package br.holandajunior.workday.commands;
 
+import br.holandajunior.workday.commands.api.ICommand;
+
 import javax.validation.constraints.NotNull;
 
 /**
@@ -7,7 +9,7 @@ import javax.validation.constraints.NotNull;
  */
 public class CreateUser implements ICommand {
 
-    private String name;
+    private String username;
 
     @NotNull
     private String email;
@@ -22,13 +24,13 @@ public class CreateUser implements ICommand {
     public CreateUser( String name, String email, String password ) {
         super();
 
-        this.name = name;
+        this.username = name;
         this.email = email;
         this.password = password;
     }
 
-    public String getName() {
-        return name;
+    public String getUsername() {
+        return username;
     }
 
     public String getEmail() {

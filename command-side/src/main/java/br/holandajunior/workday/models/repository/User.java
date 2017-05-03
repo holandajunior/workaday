@@ -1,37 +1,28 @@
-package br.holandajunior.workaday.model;
+package br.holandajunior.workday.models.repository;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
-
+import javax.persistence.*;
 import java.util.List;
 
 /**
  * Created by holandajunior on 29/04/17.
  */
 
-@Document
-@JsonInclude(JsonInclude.Include.NON_NULL)
+@Entity
+@Table(name = "workaday_user") // If not set up, 'user' in postgres is a keyword, then table will not be created properly
 public class User {
 
     @Id
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
 
-    private long userId;
     private String username;
     private String email;
+    private String password;
 
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Point> points;
 
-    public long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(long userId) {
-        this.userId = userId;
-    }
-
-    public String getId() {
+    public long getId() {
         return id;
     }
 
@@ -51,6 +42,14 @@ public class User {
         this.email = email;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     public List<Point> getPoints() {
         return points;
     }
@@ -59,6 +58,13 @@ public class User {
         this.points = points;
     }
 
+    public void addPoint( Point point ) {
+
+        this.points.add( point );
+        point.setUser( this );
+    }
+
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -66,12 +72,12 @@ public class User {
 
         User user = (User) o;
 
-        return email.equals(user.email);
+        return username != null ? username.equals(user.username) : user.username == null;
 
     }
 
     @Override
     public int hashCode() {
-        return email.hashCode();
+        return username != null ? username.hashCode() : 0;
     }
 }

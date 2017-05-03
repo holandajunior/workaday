@@ -2,28 +2,31 @@ package br.holandajunior.workaday.events.user;
 
 import br.holandajunior.workaday.events.BaseEvent;
 
-import java.util.UUID;
-
 /**
  * Created by holandajunior on 29/04/17.
  */
-
 
 public class UserCreated implements BaseEvent {
 
     public static final String DESTINATION = "event.userCreated";
 
-    private String name;
+    private long userId; // From relational database
+    private String username;
     private String email;
 
-    public UserCreated(String name, String email ) {
+    public UserCreated( long userId, String name, String email ) {
 
-        this.name = name;
+        this.userId = userId;
+        this.username = name;
         this.email = email;
     }
 
-    public String getName() {
-        return name;
+    public long getUserId() {
+        return userId;
+    }
+
+    public String getUsername() {
+        return username;
     }
 
     public String getEmail() {

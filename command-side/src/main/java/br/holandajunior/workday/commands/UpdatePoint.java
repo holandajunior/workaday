@@ -5,28 +5,22 @@ import br.holandajunior.workday.commands.api.ICommand;
 import java.util.Date;
 
 /**
- * Created by holandajunior on 29/04/17.
+ * Created by holandajunior on 01/05/17.
  */
-public class CreatePoint implements ICommand {
+public class UpdatePoint implements ICommand {
 
-    private long userId;
     private Date entry;
     private Date exit;
 
-    public CreatePoint(){
+    public UpdatePoint(){
         super();
     }
 
-    public CreatePoint( long userId, Date entry, Date exit ) {
+    public UpdatePoint( Date entry, Date exit ) {
         super();
 
-        this.userId = userId;
         this.entry = entry;
         this.exit = exit;
-    }
-
-    public long getUserId() {
-        return userId;
     }
 
     public Date getEntry() {

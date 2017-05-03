@@ -1,7 +1,9 @@
 package br.holandajunior.workaday.controller;
 
+import br.holandajunior.workaday.model.Point;
 import br.holandajunior.workaday.model.User;
 import br.holandajunior.workaday.repository.UserRepository;
+import br.holandajunior.workaday.services.api.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,16 +19,16 @@ import java.util.List;
 public class UserQueryController {
 
     @Autowired
-    private UserRepository userRepo;
+    private IUserService userService;
 
     @RequestMapping
     public List<User> findAll() {
-        return userRepo.findAll();
+        return userService.findAll();
     }
 
-    @RequestMapping("/{id}")
-    public User findOne( @PathVariable("id") Long id ) {
-        return userRepo.findOne( id );
+    @RequestMapping("/{id}/points")
+    public List<Point> findOne(@PathVariable("id") Long id ) {
+        return userService.findOne( id ).getPoints();
     }
 
 }
