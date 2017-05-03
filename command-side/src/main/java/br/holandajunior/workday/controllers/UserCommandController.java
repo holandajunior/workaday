@@ -15,13 +15,13 @@ import javax.validation.Valid;
  */
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/signup")
 public class UserCommandController {
 
     @Autowired
     private IUserService userService;
 
-    @RequestMapping(value = "/save", method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     public DeferredResult< ResponseEntity<Void> > save(@Valid @RequestBody final CreateUser createUserCommand ) {
 
         final DeferredResult< ResponseEntity<Void> > result = new DeferredResult<ResponseEntity<Void>>();
