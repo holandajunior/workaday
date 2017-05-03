@@ -41,7 +41,7 @@ POST /points/update/{id} - update a work hour with new entry hour or exit hour a
 ## To do
 
 #### Tests
-No kinds of test was created during this project yet. :( 
+No kinds of test was created yet. :( 
 
 #### To improve project documentation
 This project is simple. A basic MVC architecture was followed and its packages was created properly. Classes and variables names was defined according to its meaning, i hope :) . However, it must be itself well documented.
