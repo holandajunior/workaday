@@ -1,5 +1,6 @@
 package br.holandajunior.workaday.controller;
 
+import br.holandajunior.workaday.model.Point;
 import br.holandajunior.workaday.model.User;
 import br.holandajunior.workaday.repository.UserRepository;
 import br.holandajunior.workaday.services.api.IUserService;
@@ -25,9 +26,9 @@ public class UserQueryController {
         return userService.findAll();
     }
 
-    @RequestMapping("/{id}")
-    public User findOne( @PathVariable("id") Long id ) {
-        return userService.findOne( id );
+    @RequestMapping("/{id}/points")
+    public List<Point> findOne(@PathVariable("id") Long id ) {
+        return userService.findOne( id ).getPoints();
     }
 
 }
