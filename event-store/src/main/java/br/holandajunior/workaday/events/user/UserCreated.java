@@ -11,13 +11,13 @@ public class UserCreated implements BaseEvent {
     public static final String DESTINATION = "event.userCreated";
 
     private long userId; // From relational database
-    private String name;
+    private String username;
     private String email;
 
     public UserCreated( long userId, String name, String email ) {
 
         this.userId = userId;
-        this.name = name;
+        this.username = name;
         this.email = email;
     }
 
@@ -25,8 +25,8 @@ public class UserCreated implements BaseEvent {
         return userId;
     }
 
-    public String getName() {
-        return name;
+    public String getUsername() {
+        return username;
     }
 
     public String getEmail() {
