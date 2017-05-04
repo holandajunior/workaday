@@ -1,6 +1,6 @@
 # Workaday
 
-A simple RESTful application for work hours management, providing an API that intends to demonstrate CQRS (Commande Query Responsibility Segregation) principles in practice.
+A simple RESTful application for work hours management, providing an API that intends to demonstrate CQRS (Command Query Responsibility Segregation) principles in practice.
 
 ## Subprojects
 It follows CQRS principles, so this project is divided into two main projects: command-side and query-side.
@@ -47,7 +47,7 @@ No kinds of test was created yet. :(
 This project is simple. A basic MVC architecture was followed and its packages was created properly. Classes and variables names was defined according to its meaning, i hope :) . However, it must be itself well documented.
 
 #### Frontend
-A frontend demo-application to demonstrate using the API is in development.
+A frontend demo-application to demonstrate using the API.
 
 #### Docker image
 A docker image containing all application to be easy-to-use
