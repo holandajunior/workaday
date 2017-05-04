@@ -1,6 +1,7 @@
 package br.holandajunior.workday.security;
 
 import br.holandajunior.workday.models.repository.User;
+import br.holandajunior.workday.models.security.AuthCredentials;
 import br.holandajunior.workday.repositories.IUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -39,7 +40,11 @@ public class RestAuthenticationProvider implements AuthenticationProvider {
             throw new BadCredentialsException("Authentication Failed. Username or Password not valid.");
         }
 
-        return new UsernamePasswordAuthenticationToken(username, password);
+        AuthCredentials userLogged = new AuthCredentials();
+        userLogged.setUsername( username );
+        userLogged.setUserId( user.getId() );
+
+        return new UsernamePasswordAuthenticationToken( userLogged, password );
 
     }
 
