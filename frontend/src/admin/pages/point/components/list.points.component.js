@@ -1,11 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
+import moment from 'moment';
 
 // Internal dependencies
 import actions from '../actions';
 import { loadingWrapper } from 'appComponents';
 import 'appStyle';
+
+const FORMAT_DATE = "MMMM Do YYYY, h:mm:ss";
 
 class ListPoints extends React.Component {
 
@@ -25,40 +28,30 @@ class ListPoints extends React.Component {
 						
 			<div className="panel">
 				<div className="panel-heading">
-					<h3 className="panel-title">Usuários</h3>
+					<h3 className="panel-title">My work hours</h3>
 				</div>
-				<Link to="/system/users/add"> <button type="button" className="btn btn-primary"><i className="fa fa-plus" /> Novo usuário </button></Link>
 				<div className="panel-body">
 					<table className="table table-striped">
 						<thead>
 							<tr>
 								<th>#</th>
-								<th>Nome</th>
-								<th>Email</th>
-								<th>Grupo</th>
-								<th>Status</th>
+								<th>Entrada</th>
+								<th>Saida</th>
 								<th>Ações</th>
 							</tr>
 						</thead>
 						<tbody>
 							
 							{
-								points.map( ( user, index ) => {
+								points.map( ( point, index ) => {
 									
 									return (		
-									<tr key={ index }>
-										<td>{ index }</td>
-										<td>{ `${user.firstName} ${user.lastName}` }</td>
-										<td>{ user.email }</td>
-										<td>{ user.role }</td>
-										<td>{ user.active ? (
-												<span className="label label-active">Ativo </span>
-											) : (
-												<span className="label label-inactive">Inativo </span>) }</td>
+									<tr key={ point.pointId }>
+										<td>{ point.pointId }</td>
+										<td>{ moment( point.entry ).format(FORMAT_DATE) }</td>
+										<td>{ point.exit ? moment( point.exit ).format(FORMAT_DATE) : "Not set yet" }</td>
 										<td>
-											<Link to={`/system/users/update/${user._id.$oid}`}> <button type="button" className="btn btn-action btn-xsm"><i className="fa fa-edit" /></button> </Link>
-											<span className="divider" />
-											<button type="button" className="btn btn-action btn-xsm" onClick={ () => this.props.userRemove( index, user._id ) }><i className="fa fa-trash" /></button>
+											<Link to={`/point/update/${point.pointId}`}> <button type="button" className="btn btn-action btn-xsm"><i className="fa fa-edit" /></button> </Link>
 										</td>
 									</tr>
 									)
@@ -77,19 +70,7 @@ class ListPoints extends React.Component {
 const mapStateToProps = ( state ) => {
 	return {
 		loading: state.point.meta.isRequesting,
-		points: [
-			{
-				_id: {
-					$oid: "123"
-				},
-				index: 1,
-				firstName: "Holanda",
-				lastName: "Junior",
-				email: "holanda@gmail.com",
-				role: "admin",
-				active: true
-			}
-		]
+		points: state.point.payload.entities || []
 	}
 };
 

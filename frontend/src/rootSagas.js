@@ -11,7 +11,6 @@ export default function* rootSaga() {
     loginSagas.signup(),
 
     // User
-    pointSagas.find(),
-    pointSagas.update()
+    pointSagas.find()
   ]
 }
