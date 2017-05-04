@@ -1,8 +1,8 @@
 # Workaday
 
-This project is just a simple work hours management RESTful system, providing an API that intends to demonstrate CQRS (Commande Query Responsibility Segregation) principles in practice.
+A simple RESTful application for work hours management, providing an API that intends to demonstrate CQRS (Command Query Responsibility Segregation) principles in practice.
 
-## Modules
+## Subprojects
 It follows CQRS principles, so this project is divided into two main projects: command-side and query-side.
 I decided to develop both modules as separated microservices to show the main goal: scalability.
 The event-store module is just to own common events sent between the others two modules to communicate specific messages. Further, event-sourcing pattern can be developed into this last module.
@@ -37,3 +37,18 @@ POST /points/save - add a new work hour. You must provide user id which it refer
 
 POST /points/update/{id} - update a work hour with new entry hour or exit hour according to its id.
 ```
+
+## To do
+
+#### Tests
+No kinds of test was created yet. :( 
+
+#### To improve project documentation
+This project is simple. A basic MVC architecture was followed and its packages was created properly. Classes and variables names was defined according to its meaning, i hope :) . However, it must be itself well documented.
+
+#### Frontend
+A frontend demo-application to demonstrate using the API.
+
+#### Docker image
+A docker image containing all application to be easy-to-use
+
