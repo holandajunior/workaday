@@ -5,7 +5,7 @@ A simple RESTful application for work hours management, providing an API that in
 ## Before running
 Command-side and query-side projects need the event-store dependency, according to pom.xml file. Then, being able to execute them, you will need to add event-store project into your local repository. To do this, go to the event-store folder, so execute:
 ```
-$ mvn package && mvn install
+$ mvn install
 ```
 After this, you can run any project with:
 ```
