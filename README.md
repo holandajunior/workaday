@@ -19,8 +19,9 @@ The event-store module is just to own common events sent between the others two 
 
 ### Query-side
 This module is to provide only read-only endpoints. Here, Since tha main goal is to be scalable and high perfomance,
-it was used a NoSQL database, since data normalization is not a requirement here,  NoSQL database will be served as data cache providing
-high throughput
+it was used a NoSQL database, since data normalization is not a requirement here,  NoSQL database will be served as data cache providing high throughput.
+
+*With MongoDB server running in your machine (using container with Docker or not), do not forget about setting its uri in 'src/main/resources/application.properties' properly.
 
 #### Endpoints
 
@@ -32,6 +33,8 @@ GET /users/{id}/points - get all user's work hours by user id
 
 ### Command-side
 Command-side contains all write-only endpoints. Requesting to this module requires authentication. A relational database in this layer is important, because here it is important to maintain entities' relationship. Thus, PostgreSQL database was chosen. 
+
+*With PostgreSQL server running in your machine (using container with Docker or not), do not forget about setting its uri in 'src/main/resources/application.properties' properly.
 
 #### Endpoints
 
