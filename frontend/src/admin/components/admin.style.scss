@@ -1,0 +1,13 @@
+.brand {
+
+	h2 {
+		color: #FFF
+	}
+
+	h2 > span {
+		
+		display: inline-block;
+		border-bottom: 3px solid darken(#00A0F0, 10);
+	}
+
+}

@@ -1,0 +1,1 @@
+import authReducerSpec from './auth_reducer_spec';

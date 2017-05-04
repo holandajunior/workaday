@@ -14,3 +14,7 @@
 # Maven
 log/
 target/
+
+# Frontend
+frontend/node_modules/
+frontend/npm-debug.log
