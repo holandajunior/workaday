@@ -10,11 +10,9 @@ function* login(username, password) {
 	try {
 		
 		const result = yield call( api.login, username, password );	
-		yield put( actions.loginSuccess(result.data) );
-		console.log("Result ");
-		console.log(result);
 		yield call( $localStorage.save, app.storage.USER_TOKEN, { token: result.data.token } );
 		yield call( $localStorage.save, app.storage.USER_ID, result.data.userId );
+		yield put( actions.loginSuccess(result.data) );
 		
 	} catch( error ) {
 		yield put( actions.loginError( error ) );
@@ -60,6 +58,7 @@ function* logout() {
 			yield take( types.LOGOUT_REQUEST );
 			// yield call( api.logout );
 			yield call( $localStorage.remove, app.storage.USER_TOKEN);
+			yield call( $localStorage.remove, app.storage.USER_ID);
 			yield put( actions.logoutSuccess() );
 
 		
