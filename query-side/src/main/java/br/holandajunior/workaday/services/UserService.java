@@ -1,5 +1,6 @@
 package br.holandajunior.workaday.services;
 
+import br.holandajunior.workaday.exceptions.ResourceNotFoundException;
 import br.holandajunior.workaday.model.User;
 import br.holandajunior.workaday.repository.UserRepository;
 import br.holandajunior.workaday.services.api.IUserService;
@@ -24,7 +25,12 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public User findOne(long id) {
-        return userRepo.findByUserId( id );
+    public User findOne(long id) throws ResourceNotFoundException {
+        User user = userRepo.findByUserId( id );
+
+        if( user == null)
+            throw new ResourceNotFoundException();
+
+        return user;
     }
 }
