@@ -1,5 +1,5 @@
 {
-  "name": "FixAuditoria",
+  "name": "Workaday",
   "version": "0.1.0",
   "description": "",
   "main": "index.js",
@@ -55,13 +55,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@gitlab.com:fixauditoria/fixauditoria-frontend.git"
+    "url": "git+ssh://git@github.com:holandajunior/workaday.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "git@gitlab.com:fixauditoria/fixauditoria-frontend/issues"
+    "url": "git@github.com:holandajunior/workaday.git/issues"
   },
-  "homepage": "https://git@gitlab.com:fixauditoria/fixauditoria-frontend#README"
+  "homepage": "https://github.com/holandajunior/workaday"
 }

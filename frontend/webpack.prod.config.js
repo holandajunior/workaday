@@ -12,7 +12,7 @@ prodConfig.entry = [
 
 prodConfig.devServer = {};
 prodConfig.plugins = [
-  new ExtractTextPlugin('css/style.fixauditoria.css'),
+  new ExtractTextPlugin('css/style.workaday.css'),
   new webpack.optimize.DedupePlugin(),
   new webpack.optimize.UglifyJsPlugin({
       minimize: true,
