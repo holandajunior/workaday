@@ -13,7 +13,7 @@ const FORMAT_DATE = "MMMM Do YYYY, h:mm:ss";
 class ListPoints extends React.Component {
 
 	componentDidMount() {
-		
+		console.log("Mounted");
 		const { dispatch } = this.props;
 		
 		dispatch( actions.findRequest() );
@@ -51,7 +51,7 @@ class ListPoints extends React.Component {
 										<td>{ moment( point.entry ).format(FORMAT_DATE) }</td>
 										<td>{ point.exit ? moment( point.exit ).format(FORMAT_DATE) : "Not set yet" }</td>
 										<td>
-											<Link to={`/point/update/${point.pointId}`}> <button type="button" className="btn btn-action btn-xsm"><i className="fa fa-edit" /></button> </Link>
+											<Link to={`/point/update/${point.pointId}`}> <button disabled type="button" className="btn btn-action btn-xsm"><i className="fa fa-edit" /></button> </Link>
 										</td>
 									</tr>
 									)
