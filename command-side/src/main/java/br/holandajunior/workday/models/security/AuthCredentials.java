@@ -5,8 +5,17 @@ package br.holandajunior.workday.models.security;
  */
 public class AuthCredentials {
 
+    private long userId;
     private String username;
     private String password;
+
+    public long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(long userId) {
+        this.userId = userId;
+    }
 
     public String getUsername() {
         return username;

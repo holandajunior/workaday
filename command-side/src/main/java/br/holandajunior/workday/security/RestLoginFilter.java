@@ -54,13 +54,13 @@ public class RestLoginFilter extends AbstractAuthenticationProcessingFilter {
     protected void successfulAuthentication ( HttpServletRequest req, HttpServletResponse res,
                                               FilterChain chain, Authentication auth) throws IOException,
                                                                                              ServletException {
-
-        String token = JWTAuthenticationUtils.generateToken( auth.getName() );
+        AuthCredentials userLogged = (AuthCredentials) auth.getPrincipal();
+        String token = JWTAuthenticationUtils.generateToken( userLogged.getUsername() );
 
         res.setStatus( HttpStatus.OK.value() );
         res.setContentType( MediaType.APPLICATION_JSON_VALUE );
 
-        res.getWriter().write( String.format( "{ \"token\": \"%s\" }", token ) );
+        res.getWriter().write( String.format( "{ \"userId\": %d, \"token\": \"%s\" }", userLogged.getUserId(), token ) );
     }
 
 

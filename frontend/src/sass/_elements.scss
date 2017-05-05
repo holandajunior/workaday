@@ -1,0 +1,86 @@
+/**
+ * Labels
+ */
+
+.label-active {
+	background-color: $default-green;
+}
+
+.label-inactive {
+	background-color: $default-gray;
+}
+
+/**
+ * Buttons
+ */
+
+.btn {
+	a {
+		color: $default-white;
+	}
+}
+
+.btn-action {
+	color: $default-white;
+	background-color: $light-blue;
+	border-color: #46b8da;
+
+	&:hover {
+		background-color: #31b0d5;
+		border-color: #269abc;
+	
+	}
+}
+
+
+
+.btn-xsm {
+	padding: 2px 8px !important;
+}
+
+/**
+ * Checkboxes
+ */
+
+td > .fancy-checkbox {
+	margin-left: -4px;
+}
+
+.fancy-checkbox {
+	display: inline-block !important;
+	margin-bottom: 0;
+
+	& input[type=checkbox] {
+		display: none;
+
+	}
+	
+	span {
+	    display: inline-block;
+	    vertical-align: middle;
+	    cursor: pointer;
+	    position: relative;
+	}
+
+	span::before {
+	    display: inline-block;
+	    vertical-align: middle;
+	    position: relative;
+	    bottom: 1px;
+	    width: 18px;
+	    height: 18px;
+	    content: "";
+	    border: 1px solid #ccc;
+	}
+}
+
+
+/**
+ * Utils
+ */
+
+.divider {
+	display: inline-block;
+ 	margin-left: 2px;
+ 	margin-right: 4px;
+}

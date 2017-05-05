@@ -27,7 +27,7 @@ public class UserProjections {
 
         User user = new User();
         user.setUserId( userCreated.getUserId() );
-        user.setUsername( userCreated.getName() );
+        user.setUsername( userCreated.getUsername() );
         user.setEmail( userCreated.getEmail() );
         user.setPoints(new ArrayList<Point>());
 
