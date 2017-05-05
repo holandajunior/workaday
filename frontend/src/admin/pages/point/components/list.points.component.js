@@ -13,11 +13,9 @@ const FORMAT_DATE = "MMMM Do YYYY, h:mm:ss";
 class ListPoints extends React.Component {
 
 	componentDidMount() {
-		console.log("Mounted");
 		const { dispatch } = this.props;
 		
 		dispatch( actions.findRequest() );
-		
 	}
 
 	render() {

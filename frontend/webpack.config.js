@@ -66,7 +66,7 @@ module.exports = {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(), // Wire in the hot loading plugin
-    new ExtractTextPlugin('css/style.fixauditoria.css'),
+    new ExtractTextPlugin('css/style.workaday.css'),
     new webpack.DefinePlugin({
       'process.env': {
         'NODE_ENV': JSON.stringify('development')
