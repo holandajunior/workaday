@@ -54,8 +54,6 @@ const requestHandler = ( method, url, options, data ) => {
 					if( options.successMsg )
 						showMessage( OK, options.successMsg );
 					
-					console.log( response );
-
 					return {
 						data: response.data,
 						status: response.status

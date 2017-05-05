@@ -18,7 +18,7 @@ sagas.find = function* () {
 			
 			const result = yield call( api.find, payload.userId );
 			
-			const entities = result.data;
+			const entities = result.data.data;
 			yield put( actions.findSuccess( entities ) );
 
 		} catch( error ) {
