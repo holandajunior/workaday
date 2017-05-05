@@ -11,3 +11,4 @@ export const LOGIN_LOGOUT_RESET = 'login/LOGIN_LOGOUT_RESET';
 export const SIGNUP_REQUEST = 'signup/SIGNUP_REQUEST';
 export const SIGNUP_SUCCESS = 'signup/SIGNUP_SUCCESS';
 export const SIGNUP_ERROR = 'signup/SIGNUP_ERROR';
+export const SIGNUP_RESET = 'signup/SIGNUP_RESET';
