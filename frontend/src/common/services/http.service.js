@@ -64,11 +64,12 @@ const requestHandler = ( method, url, options, data ) => {
 				.catch( error => {
 
 					if (error.response) {
-
+						
+						
 						const response = error.response.data;
 
 						if(options.handleError)	
-							showMessage( response.meta.error.level, response.meta.error.error_message  );	
+							showMessage( WARN, response.message  );	
 							
 						if( response.meta.code ==  UNAUTHORIZED ){
 							$localStorage.remove( app.storage.USER_TOKEN );
